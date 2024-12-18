@@ -38,8 +38,8 @@ class FlipCard extends StatefulWidget {
 
   const FlipCard({
     Key? key,
-     this.flipDirection,
-     required this.onTap,
+    this.flipDirection,
+    required this.onTap,
     required this.frontWidget,
     required this.backWidget,
     this.frontWidgetSize,
@@ -54,6 +54,11 @@ class FlipCard extends StatefulWidget {
 class _FlipCardState extends State<FlipCard> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  late Animation<double> _hoverScaleAnimation; // Scale animation during hover
+  late Animation<double> _hoverShakeAnimation; // Shake animation during hover
+  late AnimationController _hoverController; // Controller for hover animation
+  bool _isHovered = false; // Tracks hover state
+
   bool _isFlipped = false;
 
   @override
@@ -69,6 +74,21 @@ class _FlipCardState extends State<FlipCard> with TickerProviderStateMixin {
     // Animation for the rotation angle
     _animation = Tween<double>(begin: 0.0, end: 3.14).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+    // Initialize hover animation controller
+    _hoverController = AnimationController(
+      duration: const Duration(milliseconds: 300), // Hover animation duration
+      vsync: this,
+    );
+
+    // Scale animation for hover effect (scale between 1.0 and 1.05)
+    _hoverScaleAnimation = Tween<double>(begin: 1.0, end: 1.05).animate(
+      CurvedAnimation(parent: _hoverController, curve: Curves.easeInOut),
+    );
+
+    // Shake animation for hover effect (rotate slightly between 0.0 and 0.03 radians)
+    _hoverShakeAnimation = Tween<double>(begin: 0.0, end: 0.03).animate(
+      CurvedAnimation(parent: _hoverController, curve: Curves.easeInOut),
     );
   }
 
@@ -88,52 +108,88 @@ class _FlipCardState extends State<FlipCard> with TickerProviderStateMixin {
   @override
   void dispose() {
     _controller.dispose();
+    _hoverController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _onCardTap,
-      child: AnimatedBuilder(
-        animation: _animation,
-        builder: (context, child) {
-          return Stack(
-            children: [
-              // Front widget
-              Transform(
-                transform: widget.flipDirection == FlipDirection.vertical
-                    ? Matrix4.rotationX(_animation.value)
-                    : Matrix4.rotationY(_animation.value),
-                alignment: Alignment.center,
-                child: Opacity(
-                  opacity: _animation.value <= 3.14 / 2 ? 1.0 : 0.0,
-                  child: SizedBox(
-                    height: widget.frontWidgetSize?.height ?? 200,
-                    width: widget.frontWidgetSize?.width ?? 150,
-                    child: widget.frontWidget,
-                  ),
-                ),
-              ),
-
-              // Back widget
-              Transform(
-                transform: widget.flipDirection == FlipDirection.vertical
-                    ? Matrix4.rotationX(_animation.value - 3.14)
-                    : Matrix4.rotationY(_animation.value - 3.14),
-                alignment: Alignment.center,
-                child: Opacity(
-                  opacity: _animation.value > 3.14 / 2 ? 1.0 : 0.0,
-                  child: SizedBox(
-                    height: widget.backWidgetSize?.height ?? 200,
-                    width: widget.backWidgetSize?.width ?? 150,
-                    child: widget.backWidget,
-                  ),
-                ),
-              ),
-            ],
-          );
+    return MouseRegion(
+      onEnter: (_) {
+        setState(() {
+          _isHovered = true; // Card is hovered
+        });
+        _hoverController.repeat(reverse: true); // Start hover animation
+      },
+      // Reset hover animations when the mouse exits
+      onExit: (_) {
+        setState(() {
+          _isHovered = false; // Card is no longer hovered
+        });
+        _hoverController.reset(); // Stop hover animation
+      },
+      child: GestureDetector(
+        onTap: _onCardTap,
+        onLongPress: () {
+          setState(() {
+            _isHovered = true;
+          });
+          Future.delayed(const Duration(milliseconds: 500), () {
+            setState(() {
+              _isHovered = false; // Reset hover effect
+            });
+          });
         },
+        child: AnimatedBuilder(
+          animation: _animation,
+          builder: (context, child) {
+            final double shake = _isHovered ? _hoverShakeAnimation.value : 0.0; // Apply shake if hovered
+            final double scale = _isHovered ? _hoverScaleAnimation.value : 1.0; // Apply scale if hovered
+
+            return Transform(
+              alignment: Alignment.center, // Center transformations
+              transform: Matrix4.identity()
+                ..rotateZ(shake) // Apply shake transformation
+                ..scale(scale),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  // Front widget
+                  Transform(
+                    transform: widget.flipDirection == FlipDirection.vertical
+                        ? Matrix4.rotationX(_animation.value)
+                        : Matrix4.rotationY(_animation.value),
+                    alignment: Alignment.center,
+                    child: Opacity(
+                      opacity: _animation.value <= 3.14 / 2 ? 1.0 : 0.0,
+                      child: SizedBox(
+                        height: widget.frontWidgetSize?.height,
+                        width: widget.frontWidgetSize?.width,
+                        child: widget.frontWidget,
+                      ),
+                    ),
+                  ),
+
+                  // Back widget
+                  Transform(
+                    transform: widget.flipDirection == FlipDirection.vertical
+                        ? Matrix4.rotationX(_animation.value - 3.14)
+                        : Matrix4.rotationY(_animation.value - 3.14),
+                    alignment: Alignment.center,
+                    child: Opacity(
+                      opacity: _animation.value > 3.14 / 2 ? 1.0 : 0.0,
+                      child: SizedBox(
+                        height: widget.backWidgetSize?.height,
+                        width: widget.backWidgetSize?.width,
+                        child: widget.backWidget,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
