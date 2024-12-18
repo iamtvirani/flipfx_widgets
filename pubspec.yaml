@@ -1,0 +1,35 @@
+name: flip_widgets
+description: A Flutter package for creating customizable flip animations between two widgets.
+version: 0.0.1
+homepage: https://github.com/your-username/flip_widgets # Add your GitHub repo or documentation link here.
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+  flutter: ">=2.0.0" # Adjust the Flutter version to match your minimum compatibility requirements.
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0 # Matches the Flutter lints version with your Flutter SDK compatibility.
+
+# Flutter-specific package configurations
+flutter:
+# Uncomment if your package uses any assets (e.g., images or animations)
+# assets:
+#   - images/a_dot_burr.jpeg
+
+# Uncomment if you include any custom fonts in your package
+# fonts:
+#   - family: CustomFont
+#     fonts:
+#       - asset: fonts/CustomFont-Regular.ttf
+
+# Additional metadata
+repository: https://github.com/iamtvirani/flip_widgets # The GitHub repository link for your package.
+issue_tracker: https://github.com/iamtvirani/flip_widgets/issues # Issue tracker link for bug reporting.
+documentation: https://github.com/iamtvirani/flip_widgets/wiki # Optional: A separate documentation link.
+publish_to: "https://pub.dev" # Ensure this is uncommented to publish to pub.dev.
