@@ -1,17 +1,18 @@
-import 'package:flip_widgets/flip_widgets.dart';
+import 'package:flip_widgets/flipfx_widgets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class FlipWidgetUsingVerticalCustomSize extends StatelessWidget {
-  const FlipWidgetUsingVerticalCustomSize({super.key});
+class FlipFXWidgetUsingHorizontalCustomSize extends StatelessWidget {
+  const FlipFXWidgetUsingHorizontalCustomSize({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+
       body: Center(
-        child: FlipCard(
-          flipDirection: FlipDirection.vertical,
+        child: FlipFxWidgets(
+          flipDirection: FlipDirection.horizontal,
           onTap: () {
             if (kDebugMode) {
               print('Card flipped!');

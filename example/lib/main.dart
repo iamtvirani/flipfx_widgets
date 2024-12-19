@@ -1,7 +1,7 @@
-import 'package:example/widgets/flip_widget_horizontal_default_size.dart';
-import 'package:example/widgets/flip_widget_vertical_default_size.dart';
-import 'package:example/widgets/flip_widget_using_horizontal_custom_size.dart';
-import 'package:example/widgets/flip_widget_using_vertical_custom_size.dart';
+import 'package:example/widgets/flipfx_widget_horizontal_default_size.dart';
+import 'package:example/widgets/flipfx_widget_vertical_default_size.dart';
+import 'package:example/widgets/flipfx_widget_using_horizontal_custom_size.dart';
+import 'package:example/widgets/flipfx_widget_using_vertical_custom_size.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(FlipCardExample());
@@ -30,7 +30,7 @@ class FlipCardExample extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => FlipWidgetUsingVerticalCustomSize(),
+                            builder: (context) => FlipFXWidgetUsingVerticalCustomSize(),
                           ),
                         );
                       },
@@ -43,7 +43,7 @@ class FlipCardExample extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => FlipWidgetUsingHorizontalCustomSize(),
+                            builder: (context) => FlipFXWidgetUsingHorizontalCustomSize(),
                           ),
                         );
                       },
@@ -56,7 +56,7 @@ class FlipCardExample extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => FlipWidgetVerticalDefaultSize(),
+                            builder: (context) => FlipFXWidgetVerticalDefaultSize(),
                           ),
                         );
                       },
@@ -68,7 +68,7 @@ class FlipCardExample extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => FlipWidgetHorizontalDefaultSize(),
+                            builder: (context) => FlipFXWidgetHorizontalDefaultSize(),
                           ),
                         );
                       },

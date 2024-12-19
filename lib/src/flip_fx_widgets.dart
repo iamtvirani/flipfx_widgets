@@ -14,7 +14,7 @@ enum FlipDirection {
 /// This widget allows creating cards that can flip in vertical or horizontal directions.
 /// [frontWidget] represents the front side of the card.
 /// [backWidget] represents the back side of the card.
-class FlipCard extends StatefulWidget {
+class FlipFxWidgets extends StatefulWidget {
   /// Direction of the flip: vertical or horizontal.
   final FlipDirection? flipDirection;
 
@@ -36,7 +36,7 @@ class FlipCard extends StatefulWidget {
   /// Duration of the flip animation (default is 800ms).
   final Duration duration;
 
-  const FlipCard({
+  const FlipFxWidgets({
     Key? key,
     this.flipDirection,
     required this.onTap,
@@ -48,10 +48,10 @@ class FlipCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FlipCardState createState() => _FlipCardState();
+  _FlipFxWidgetsState createState() => _FlipFxWidgetsState();
 }
 
-class _FlipCardState extends State<FlipCard> with TickerProviderStateMixin {
+class _FlipFxWidgetsState extends State<FlipFxWidgets> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   late Animation<double> _hoverScaleAnimation; // Scale animation during hover

@@ -1,8 +1,8 @@
-name: flip_widgets
+name: flipfx_widgets
 description: A Flutter package for creating customizable flip animations between two widgets.
 version: 0.0.1
-homepage: https://github.com/iamtvirani/flip_widgets
-repository: https://github.com/iamtvirani/flip_widgets
+homepage: https://github.com/iamtvirani/flipfx_widgets
+repository: https://github.com/iamtvirani/flipfx_widgets
 
 environment:
   sdk: ">=3.6.0 <4.0.0"

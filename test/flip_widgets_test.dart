@@ -1,4 +1,4 @@
-import 'package:flip_widgets/flip_widgets.dart';
+import 'package:flipfx_widgets/flipfx_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -10,7 +10,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: FlipCard(
+          body: FlipFxWidgets(
             flipDirection: FlipDirection.horizontal,
             onTap: () {
               wasTapped = true;
@@ -23,32 +23,32 @@ void main() {
     );
 
     // Verify that both widgets exist in the widget tree
-    expect(find.byKey(Key('frontWidget')), findsOneWidget);
-    expect(find.byKey(Key('backWidget')), findsOneWidget);
+    expect(find.byKey(const Key('frontWidget')), findsOneWidget);
+    expect(find.byKey(const Key('backWidget')), findsOneWidget);
 
     // Initially, the back widget should be invisible (opacity = 0)
     final frontWidgetOpacity = tester.widget<Opacity>(
-      find.ancestor(of: find.byKey(Key('frontWidget')), matching: find.byType(Opacity)),
+      find.ancestor(of: find.byKey(const Key('frontWidget')), matching: find.byType(Opacity)),
     ).opacity;
     expect(frontWidgetOpacity, equals(1.0));
 
     final backWidgetOpacity = tester.widget<Opacity>(
-      find.ancestor(of: find.byKey(Key('backWidget')), matching: find.byType(Opacity)),
+      find.ancestor(of: find.byKey(const Key('backWidget')), matching: find.byType(Opacity)),
     ).opacity;
     expect(backWidgetOpacity, equals(0.0));
 
     // Simulate a tap on the FlipCard
-    await tester.tap(find.byType(FlipCard));
+    await tester.tap(find.byType(FlipFxWidgets));
     await tester.pumpAndSettle();
 
     // Verify the animation completed: front widget becomes invisible, back widget visible
     final updatedFrontWidgetOpacity = tester.widget<Opacity>(
-      find.ancestor(of: find.byKey(Key('frontWidget')), matching: find.byType(Opacity)),
+      find.ancestor(of: find.byKey(const Key('frontWidget')), matching: find.byType(Opacity)),
     ).opacity;
     expect(updatedFrontWidgetOpacity, equals(0.0));
 
     final updatedBackWidgetOpacity = tester.widget<Opacity>(
-      find.ancestor(of: find.byKey(Key('backWidget')), matching: find.byType(Opacity)),
+      find.ancestor(of: find.byKey(const Key('backWidget')), matching: find.byType(Opacity)),
     ).opacity;
     expect(updatedBackWidgetOpacity, equals(1.0));
 
