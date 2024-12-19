@@ -16,7 +16,9 @@ class FlipFXWidgetDefaultSize extends StatelessWidget {
           children: List.generate(
             3,
             (index) => FlipFxWidgets(
-              flipDirection: isHorizontal ? FlipDirection.horizontal : FlipDirection.vertical,
+              flipDirection: isHorizontal
+                  ? FlipDirection.horizontal
+                  : FlipDirection.vertical,
               onTap: () {
                 if (kDebugMode) {
                   print('Card flipped!');

@@ -51,7 +51,8 @@ class FlipFxWidgets extends StatefulWidget {
   _FlipFxWidgetsState createState() => _FlipFxWidgetsState();
 }
 
-class _FlipFxWidgetsState extends State<FlipFxWidgets> with TickerProviderStateMixin {
+class _FlipFxWidgetsState extends State<FlipFxWidgets>
+    with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   late Animation<double> _hoverScaleAnimation;
@@ -142,8 +143,12 @@ class _FlipFxWidgetsState extends State<FlipFxWidgets> with TickerProviderStateM
         child: AnimatedBuilder(
           animation: _animation,
           builder: (context, child) {
-            final double shake = _isHovered ? _hoverShakeAnimation.value : 0.0; // Apply shake if hovered
-            final double scale = _isHovered ? _hoverScaleAnimation.value : 1.0; // Apply scale if hovered
+            final double shake = _isHovered
+                ? _hoverShakeAnimation.value
+                : 0.0; // Apply shake if hovered
+            final double scale = _isHovered
+                ? _hoverScaleAnimation.value
+                : 1.0; // Apply scale if hovered
 
             return Transform(
               alignment: Alignment.center, // Center transformations

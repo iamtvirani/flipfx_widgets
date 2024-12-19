@@ -13,14 +13,17 @@ class FlipFXWidgetUsingCustomSize extends StatelessWidget {
       appBar: AppBar(),
       body: Center(
         child: FlipFxWidgets(
-          flipDirection: isHorizontal ? FlipDirection.horizontal : FlipDirection.vertical,
+          flipDirection:
+              isHorizontal ? FlipDirection.horizontal : FlipDirection.vertical,
           onTap: () {
             if (kDebugMode) {
               print('Card flipped!');
             }
           },
-          backWidgetSize: Size(MediaQuery.of(context).size.width / 2, MediaQuery.of(context).size.height / 3),
-          frontWidgetSize: Size(MediaQuery.of(context).size.width / 3, MediaQuery.of(context).size.width / 3),
+          backWidgetSize: Size(MediaQuery.of(context).size.width / 2,
+              MediaQuery.of(context).size.height / 3),
+          frontWidgetSize: Size(MediaQuery.of(context).size.width / 3,
+              MediaQuery.of(context).size.width / 3),
           frontWidget: Container(
             color: Colors.blue,
             child: Column(

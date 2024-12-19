@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('FlipCard flips to show backWidget on tap', (WidgetTester tester) async {
+  testWidgets('FlipCard flips to show backWidget on tap',
+      (WidgetTester tester) async {
     bool wasTapped = false;
 
     // Define the FlipCard widget
@@ -27,14 +28,22 @@ void main() {
     expect(find.byKey(const Key('backWidget')), findsOneWidget);
 
     // Initially, the back widget should be invisible (opacity = 0)
-    final frontWidgetOpacity = tester.widget<Opacity>(
-      find.ancestor(of: find.byKey(const Key('frontWidget')), matching: find.byType(Opacity)),
-    ).opacity;
+    final frontWidgetOpacity = tester
+        .widget<Opacity>(
+          find.ancestor(
+              of: find.byKey(const Key('frontWidget')),
+              matching: find.byType(Opacity)),
+        )
+        .opacity;
     expect(frontWidgetOpacity, equals(1.0));
 
-    final backWidgetOpacity = tester.widget<Opacity>(
-      find.ancestor(of: find.byKey(const Key('backWidget')), matching: find.byType(Opacity)),
-    ).opacity;
+    final backWidgetOpacity = tester
+        .widget<Opacity>(
+          find.ancestor(
+              of: find.byKey(const Key('backWidget')),
+              matching: find.byType(Opacity)),
+        )
+        .opacity;
     expect(backWidgetOpacity, equals(0.0));
 
     // Simulate a tap on the FlipCard
@@ -42,18 +51,25 @@ void main() {
     await tester.pumpAndSettle();
 
     // Verify the animation completed: front widget becomes invisible, back widget visible
-    final updatedFrontWidgetOpacity = tester.widget<Opacity>(
-      find.ancestor(of: find.byKey(const Key('frontWidget')), matching: find.byType(Opacity)),
-    ).opacity;
+    final updatedFrontWidgetOpacity = tester
+        .widget<Opacity>(
+          find.ancestor(
+              of: find.byKey(const Key('frontWidget')),
+              matching: find.byType(Opacity)),
+        )
+        .opacity;
     expect(updatedFrontWidgetOpacity, equals(0.0));
 
-    final updatedBackWidgetOpacity = tester.widget<Opacity>(
-      find.ancestor(of: find.byKey(const Key('backWidget')), matching: find.byType(Opacity)),
-    ).opacity;
+    final updatedBackWidgetOpacity = tester
+        .widget<Opacity>(
+          find.ancestor(
+              of: find.byKey(const Key('backWidget')),
+              matching: find.byType(Opacity)),
+        )
+        .opacity;
     expect(updatedBackWidgetOpacity, equals(1.0));
 
     // Verify the onTap callback was triggered
     expect(wasTapped, isTrue);
   });
 }
-
