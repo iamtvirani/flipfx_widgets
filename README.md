@@ -1,6 +1,11 @@
 # Flip Widget
 
-A customizable widget for flipping between two child widgets in either a vertical or horizontal direction with smooth animations.
+A customizable widget for flipping between two child widgets in either a vertical or horizontal direction with smooth animations. 
+
+
+https://github.com/user-attachments/assets/d82db892-92a6-4db1-8840-959fdd3e4bc0
+
+
 
 ## Features
 
@@ -16,4 +21,4 @@ To use the `flip_widget` package in your Flutter project, add the following depe
 
 ```yaml
 dependencies:
-  flip_widget: ^1.0.0 
+  flipfx_widgets: ^1.0.0 
