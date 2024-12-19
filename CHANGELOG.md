@@ -1,3 +1,8 @@
+## [0.0.2]
+### Added
+
+- Change example ans also [README.md](README.md) file
+
 ## [0.0.1]
 ### Added
 - Added a FlipWidget class for flipping elements.
