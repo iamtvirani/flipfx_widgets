@@ -1,12 +1,11 @@
-import 'package:example/widgets/flipfx_widget_horizontal_default_size.dart';
-import 'package:example/widgets/flipfx_widget_vertical_default_size.dart';
-import 'package:example/widgets/flipfx_widget_using_horizontal_custom_size.dart';
-import 'package:example/widgets/flipfx_widget_using_vertical_custom_size.dart';
+import 'package:example/widgets/flipfx_widget_default_size.dart';
+import 'package:example/widgets/flipfx_widget_using_custom_size.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(FlipCardExample());
 
 class FlipCardExample extends StatelessWidget {
+
   const FlipCardExample({super.key});
 
   @override
@@ -15,7 +14,7 @@ class FlipCardExample extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Flip Widgets Example'),
+          title: const Text('FlipFX Widgets Example'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(12),
@@ -30,7 +29,7 @@ class FlipCardExample extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => FlipFXWidgetUsingVerticalCustomSize(),
+                            builder: (context) => FlipFXWidgetUsingCustomSize(isHorizontal: false),
                           ),
                         );
                       },
@@ -43,7 +42,7 @@ class FlipCardExample extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => FlipFXWidgetUsingHorizontalCustomSize(),
+                            builder: (context) => FlipFXWidgetUsingCustomSize(isHorizontal: true,),
                           ),
                         );
                       },
@@ -56,7 +55,7 @@ class FlipCardExample extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => FlipFXWidgetVerticalDefaultSize(),
+                            builder: (context) => FlipFXWidgetDefaultSize(isHorizontal: true),
                           ),
                         );
                       },
@@ -64,11 +63,12 @@ class FlipCardExample extends StatelessWidget {
                         'Flip Widget Using vertical direction with default size',
                         textAlign: TextAlign.center,
                       ),
-                    ),ElevatedButton(
+                    ),
+                    ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => FlipFXWidgetHorizontalDefaultSize(),
+                            builder: (context) => FlipFXWidgetDefaultSize(isHorizontal: false,),
                           ),
                         );
                       },

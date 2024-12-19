@@ -54,10 +54,10 @@ class FlipFxWidgets extends StatefulWidget {
 class _FlipFxWidgetsState extends State<FlipFxWidgets> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
-  late Animation<double> _hoverScaleAnimation; // Scale animation during hover
-  late Animation<double> _hoverShakeAnimation; // Shake animation during hover
-  late AnimationController _hoverController; // Controller for hover animation
-  bool _isHovered = false; // Tracks hover state
+  late Animation<double> _hoverScaleAnimation;
+  late Animation<double> _hoverShakeAnimation;
+  late AnimationController _hoverController;
+  bool _isHovered = false;
 
   bool _isFlipped = false;
 
@@ -65,7 +65,6 @@ class _FlipFxWidgetsState extends State<FlipFxWidgets> with TickerProviderStateM
   void initState() {
     super.initState();
 
-    // Animation controller for the flip animation
     _controller = AnimationController(
       duration: widget.duration,
       vsync: this,
